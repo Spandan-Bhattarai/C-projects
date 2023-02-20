@@ -32,7 +32,7 @@ void again()
     scanf("%d", &n1);
     if (n1==1)
     {
-        printf("\nStarting again");
+        printf("\nStarting again\n");
         encrypt();
     }
     else
@@ -51,8 +51,8 @@ void encrypt()
     // Open file
     FILE *file = fopen(filename, "r+");
     if (file == NULL) {
-        printf("\nError opening file!\n");
-        return 1;
+        printf("\nError opening file!Try again\n");
+        again();
     }
 
     // Read file into a string
@@ -90,7 +90,7 @@ void decrypt(char text,int length)
     scanf("%d", &n);
     if (n==1)
     {
-        printf("\nDo you want to write the decrpyted text to same file or new file[1 for same/0 for different]: ");
+        printf("\nDo you want to write the decrpyted text to same file or new file[0 for different/anything else for same]: ");
         scanf("%d", &n1);
         if (n1==0)
         {
@@ -109,15 +109,16 @@ void decrypt(char text,int length)
     }
     else{
         printf("\nwrong choice\n");
-        printf("Exiting....\n");
+        printf("Exiting the session....\n");
+        again();
     }
 
 
     // Open file2.txt for writing
     FILE *file2 = fopen(filename, "w");
     if (file2 == NULL) {
-        printf("\nError creating file2.txt!\n");
-        return 1;
+        printf("\nError opening file!Try again\n");
+        again();
     }
     // Decrypt the text
     rot13d(text);
@@ -129,6 +130,7 @@ void decrypt(char text,int length)
 }
 
 int main(void) {
+    printf("Hello there. welcome to the program \n");
     //Encryption
     encrypt();
     return 0;
